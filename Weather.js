@@ -8,10 +8,9 @@ require('dotenv').config();
 // const PORT=process.env.PORT;
 
 let handleWeather= async (req,res)=>{
-    const lat = req.query.lat;
-    const lon = req.query.lon;
-    const key = req.query.key;
-    let url=`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${key}`;
+    let lat=req.query.lat;
+    let lon=req.query.lon;
+    let url=`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&key=${process.env.WEATHERBIT_API_KEY}&lon=${lon}`;
     let axiosResponse= await axios.get(url);
     let weatherData=axiosResponse.data;
     let cleanedData=weatherData.data.map(item=>{
@@ -19,7 +18,7 @@ let handleWeather= async (req,res)=>{
     })
     res.status(200).json(cleanedData);
 }
-
+app.get('/weather',handleWeather)
 
 
 // Model
