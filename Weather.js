@@ -18,7 +18,7 @@ let handleWeather= async (req,res)=>{
     })
     res.status(200).json(cleanedData);
 }
-app.get('/weather',handleWeather)
+
 
 
 // Model
@@ -28,8 +28,8 @@ class ForeCast{
         this.description=description
     }
 } 
-
+console.log(handleWeather())
 // app.listen(PORT,()=>{
 //     console.log(`listening to port ${PORT}`)
 //  });
- module.exports =  handleWeather 
+ module.exports = handleWeather ;
