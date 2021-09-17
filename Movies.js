@@ -6,7 +6,6 @@ const axios =require("axios");
 app.use(cors());
 require('dotenv').config();
 
-
 let handleMovies= async (req,res)=>{
     let query =req.query.query;
     let moviesUrl=`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${query}`;
@@ -17,6 +16,7 @@ let handleMovies= async (req,res)=>{
     })
     res.status(200).json(moviesData);
 }
+
 
 
 
@@ -32,4 +32,4 @@ class MoviesModal{
    
     }
 } 
-module.exports = { MoviesModal, handleMovies };
+module.exports =  handleMovies;
