@@ -1,19 +1,19 @@
 'use strict';
-let cache = require('./cache.js');
+let cache = require('../modules/cache');
 const axios = require('axios');
 const MoviesModal =require('../Movies')
+const movieList =require('../Movies')
 
 function getMovies(query) {
     const key = 'movies-' + query;
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${query}`;
+    const moviesUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${query}`;
 
-    if (cache[key] && (Date.now() - cache[key].timestamp < 50000)) {
+    if (cache[key]) {
         console.log('Cache hit');
     } else {
         console.log('Cache miss');
         cache[key] = {};
-        cache[key].timestamp = Date.now();
-        cache[key].data = axios.get(url)
+        cache[key].data = axios.get(moviesUrl)
             .then(response => parseMovies(response.data));
     }
 
@@ -33,6 +33,5 @@ function parseMovies(movieList) {
     }
 
 }
-
 
 module.exports = getMovies;
