@@ -7,14 +7,15 @@ app.use(cors());
 require('dotenv').config();
 
 let handleMovies= async (req,res)=>{
-    let query =req.query.query;
+   let query =req.query.query;
     let moviesUrl=`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${query}`;
     let axiosMovies= await axios.get(moviesUrl);
     let movieList=axiosMovies.data.results;
     let moviesData=movieList.map(item=>{
         return new MoviesModal(item.title,item.overview,item.vote_count,item.vote_average,item.poster_path,item.popularity,item.release_date);
-    })
+    }) 
     res.status(200).json(moviesData);
+    
 }
 
 
@@ -31,5 +32,6 @@ class MoviesModal{
      this.released_on=released_on
    
     }
+    
 } 
 module.exports =  handleMovies;

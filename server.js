@@ -30,7 +30,7 @@ function weatherHandler(request, response) {
     response.status(200).send('Sorry. Something went wrong!')
   });
 }  
-/*-------------------------------------------------- */
+
 app.get('/movie', movieHandler);
 
 function movieHandler(request,response){
