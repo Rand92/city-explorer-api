@@ -1,8 +1,7 @@
 'use strict';
 let cache = require('../modules/cache');
 const axios = require('axios');
-const MoviesModal =require('../Movies')
-const movieList =require('../Movies')
+
 
 function getMovies(query) {
     const key = 'movies-' + query;
@@ -19,11 +18,12 @@ function getMovies(query) {
 
     return cache[key].data;
 }
-let movieSummaries = {};
+let movieSummaries = [];
 function parseMovies(movieList) {
     try {
+        // console.log(moviesData)
         movieSummaries = movieList.results.map(item => {
-            return new MoviesModal(item.title);
+            return new MoviesModel(item.title);
         });
         module.exports = { movieSummaries }
 
@@ -34,4 +34,16 @@ function parseMovies(movieList) {
 
 }
 
+class MoviesModel{
+    constructor(title,overview,total_votes,average_votes,image_url,popularity,released_on){
+     this.title=title;
+     this.overview=overview;
+     this.total_votes=total_votes;
+     this.average_votes=average_votes;
+     this.image_url=image_url;
+     this.popularity=popularity;
+     this.released_on=released_on
+   
+    }
+} 
 module.exports = getMovies;
