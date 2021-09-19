@@ -12,29 +12,29 @@ app.get('/',(req,res)=>{
   res.send('hello! i am working');
 })
 
-app.get('/weather', weatherHandler);
+app.get('/weather', handleWeather);
 
-function weatherHandler(request, response) {
-  const { lat, lon } = request.query;
-   weather(lat, lon)
-  .then(summaries => response.send(summaries))
-  .catch((error) => {
-    console.error(error);
-    response.status(200).send('Sorry. Something went wrong!')
-  });
-}  
+// function weatherHandler(request, response) {
+//   const { lat, lon } = request.query;
+//    weather(lat, lon)
+//   .then(summaries => response.send(summaries))
+//   .catch((error) => {
+//     console.error(error);
+//     response.status(200).send('Sorry. Something went wrong!')
+//   });
+// }  
 
-app.get('/movie', movieHandler);
+app.get('/movie', handleMovies);
 
-function movieHandler(request,response){
-  const query=request.query;
-MoviesModal(query)
-.then(summaries => response.send(summaries))
-.catch((error)=>{
-  console.error(error);
-  response.status(200).send('Sorry. Something went wrong!')
-})
-}
+// function movieHandler(request,response){
+//   const query=request.query;
+// MoviesModal(query)
+// .then(summaries => response.send(summaries))
+// .catch((error)=>{
+//   console.error(error);
+//   response.status(200).send('Sorry. Something went wrong!')
+// })
+// }
 app.listen(PORT,() => {console.log(`Server up on ${PORT}`)});
 
 
