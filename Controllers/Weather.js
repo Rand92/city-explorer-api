@@ -5,7 +5,7 @@ const cors = require('cors');
 const axios =require("axios");
 app.use(cors());
 require('dotenv').config();
-// const PORT=process.env.PORT;
+const ForeCast=require('../models/weather')
 
 let handleWeather= async (req,res)=>{
     let lat=req.query.lat;
@@ -21,15 +21,6 @@ let handleWeather= async (req,res)=>{
 app.get('/weather',handleWeather)
 
 
-// Model
-class ForeCast{
-    constructor(date,description){
-        this.date=date;
-        this.description=description
-    }
-} 
 
-// app.listen(PORT,()=>{
-//     console.log(`listening to port ${PORT}`)
-//  });
+
  module.exports =  handleWeather 

@@ -8,8 +8,8 @@ require('dotenv').config();
 // const weather=require('./data/weather.json');
 // const { response } = require('express');
 const PORT=process.env.PORT;
-const handleWeather=require('./Weather')
-const handleMovies=require('./Movies')
+const handleWeather=require('./Controllers/Weather')
+const handleMovies=require('./Controllers/Movies')
 app.get('/',(req,res)=>{
     res.status(200).json({"message":"I'm working"})
 })
