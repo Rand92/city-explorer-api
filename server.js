@@ -6,15 +6,8 @@ app.use(cors());
 require('dotenv').config();
 
 const PORT=process.env.PORT;
-const handleWeather=require('./Weather');
-const handleMovies=require('./Movies');
-const weather =require('./modules/weather');
-const MoviesModal = require('./modules/movie')
-
-
-// app.get('/weather',handleWeather)
-// app.get('/movies',handleMovies);
-
+const handleWeather=require('./Controllers/Weather')
+const handleMovies=require('./Controllers/Movies')
 app.get('/',(req,res)=>{
   res.send('hello! i am working');
 })
